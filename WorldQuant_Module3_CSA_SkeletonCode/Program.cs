@@ -89,7 +89,19 @@ namespace WorldQuant_Module3_CSA_SkeletonCode
 
         static void SetUp()
         {
-            // TODO: Implement this method
+            app.Workbooks.Add();
+            workbook = app.ActiveWorkbook;
+
+            workbook.Worksheets.Add();
+
+            Excel.Worksheet currentSheet = workbook.Worksheets[1];
+            currentSheet.Name = "Properties";
+            currentSheet.Cells[1, "A"] = "Size";
+            currentSheet.Cells[1, "B"] = "Suburb";
+            currentSheet.Cells[1, "C"] = "City";
+            currentSheet.Cells[1, "D"] = "Value";
+             
+            workbook.SaveAs("property_pricing.xlsx");
         }
 
         static void AddPropertyToWorksheet(float size, string suburb, string city, float value)
