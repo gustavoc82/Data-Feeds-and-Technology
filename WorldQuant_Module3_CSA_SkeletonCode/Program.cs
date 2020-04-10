@@ -12,7 +12,7 @@ namespace WorldQuant_Module3_CSA_SkeletonCode
         {
             app = new Excel.Application();
             app.Visible = true;
-            try
+            try1
             {
                 workbook = app.Workbooks.Open("property_pricing.xlsx", ReadOnly: false);
             }
@@ -100,13 +100,26 @@ namespace WorldQuant_Module3_CSA_SkeletonCode
             currentSheet.Cells[1, "B"] = "Suburb";
             currentSheet.Cells[1, "C"] = "City";
             currentSheet.Cells[1, "D"] = "Value";
+            //currentSheet.Cells[1, "E"] = "Counter";
+            //currentSheet.Cells[2, "E"].Value = 0;
              
             workbook.SaveAs("property_pricing.xlsx");
         }
 
         static void AddPropertyToWorksheet(float size, string suburb, string city, float value)
         {
-            // TODO: Implement this method
+            Excel.Worksheet currentSheet = workbook.Worksheets[1];
+            Excel.Range last = currentSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
+            var nrows = last.Row;
+            nrows++; // need to increment since nrows above is the last FILLED row
+            
+            currentSheet.Cells[nrows, "A"].Value = size;
+            currentSheet.Cells[nrows, "B"].Value = suburb;
+            currentSheet.Cells[nrows, "C"].Value = city;
+            currentSheet.Cells[nrows, "D"].Value = value;
+            
+            return;
+
         }
 
         static float CalculateMean()
