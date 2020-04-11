@@ -1,7 +1,7 @@
 ﻿using System;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace WorldQuant_Module3_CSA_SkeletonCode
+namespace Data_Feeds_and_Technology
 {
     class Program
     {
@@ -10,8 +10,10 @@ namespace WorldQuant_Module3_CSA_SkeletonCode
 
         static void Main(string[] args)
         {
-            app = new Excel.Application();
-            app.Visible = true;
+            app = new Excel.Application
+            {
+                Visible = true
+            };
             try
             {
                 workbook = app.Workbooks.Open("property_pricing.xlsx", ReadOnly: false);
@@ -89,11 +91,14 @@ namespace WorldQuant_Module3_CSA_SkeletonCode
 
         static void SetUp()
         {
+            // add a workbook and set it as active
             app.Workbooks.Add();
             workbook = app.ActiveWorkbook;
 
+            // add a worksheet
             workbook.Worksheets.Add();
 
+            // set the worksheet as current and set table colunm names
             Excel.Worksheet currentSheet = workbook.Worksheets[1];
             currentSheet.Name = "Properties";
             currentSheet.Cells[1, "A"] = "Size";
@@ -102,7 +107,8 @@ namespace WorldQuant_Module3_CSA_SkeletonCode
             currentSheet.Cells[1, "D"] = "Value";
             //currentSheet.Cells[1, "E"] = "Counter";
             //currentSheet.Cells[2, "E"].Value = 0;
-             
+            
+            // save workbook
             workbook.SaveAs("property_pricing.xlsx");
         }
 
