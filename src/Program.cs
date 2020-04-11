@@ -12,7 +12,8 @@ namespace Data_Feeds_and_Technology
         {
             app = new Excel.Application
             {
-                Visible = true
+                Visible = true,
+                WindowState = Excel.XlWindowState.xlMaximized
             };
             try
             {
@@ -22,7 +23,6 @@ namespace Data_Feeds_and_Technology
             {
                 SetUp();
             }
-
             var input = "";
             while (input != "x")
             {
@@ -71,8 +71,12 @@ namespace Data_Feeds_and_Technology
             }
 
             // save before exiting
-            workbook.Save();
-            workbook.Close();
+            try
+            {
+                workbook.Save();
+                workbook.Close();
+            }
+            catch { }
             app.Quit();
         }
 
@@ -95,37 +99,37 @@ namespace Data_Feeds_and_Technology
             app.Workbooks.Add();
             workbook = app.ActiveWorkbook;
 
-            // add a worksheet
-            workbook.Worksheets.Add();
+            // set current worksheet
+            Excel._Worksheet currentSheet = workbook.Worksheets[1];
 
-            // set the worksheet as current and set table colunm names
-            Excel.Worksheet currentSheet = workbook.Worksheets[1];
+            // set sheet name
             currentSheet.Name = "Properties";
-            currentSheet.Cells[1, "A"] = "Size";
+
+            // set columns names
+            currentSheet.Cells[1, "A"] = "Size (sf)";
             currentSheet.Cells[1, "B"] = "Suburb";
             currentSheet.Cells[1, "C"] = "City";
             currentSheet.Cells[1, "D"] = "Value";
-            //currentSheet.Cells[1, "E"] = "Counter";
-            //currentSheet.Cells[2, "E"].Value = 0;
-            
+            currentSheet.Cells[1, "E"] = 0;
+
             // save workbook
             workbook.SaveAs("property_pricing.xlsx");
         }
 
         static void AddPropertyToWorksheet(float size, string suburb, string city, float value)
         {
+            // set current worksheet
             Excel.Worksheet currentSheet = workbook.Worksheets[1];
-            Excel.Range last = currentSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing);
-            var nrows = last.Row;
-            nrows++; // need to increment since nrows above is the last FILLED row
             
-            currentSheet.Cells[nrows, "A"].Value = size;
-            currentSheet.Cells[nrows, "B"].Value = suburb;
-            currentSheet.Cells[nrows, "C"].Value = city;
-            currentSheet.Cells[nrows, "D"].Value = value;
-            
-            return;
+            var nrows = currentSheet.Cells[1, "E"].value;
+            nrows += 2; // need to increment since nrows above is the last FILLED row
 
+            // add property data to the table 
+            currentSheet.Cells[nrows, "A"] = size;
+            currentSheet.Cells[nrows, "B"] = suburb;
+            currentSheet.Cells[nrows, "C"] = city;
+            currentSheet.Cells[nrows, "D"] = value;
+            currentSheet.Cells[1, "E"] = nrows - 1;
         }
 
         static float CalculateMean()

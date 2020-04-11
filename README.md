@@ -6,7 +6,7 @@
     <i>
     Aaron Jones - <a href="mailto:aspcul8r@gmail.com">aspcul8r@gmail.com</a><br>
     Gustavo Campos - <a href="mailto:gustavoc82@me.com">gustavoc82@me.com</a><br>
-    Mansa Kiani - <a href="mailto:mahsa.kiani@ieee.org">mahsa.kiani@ieee.org</a><br>
+    Mahsa Kiani - <a href="mailto:mahsa.kiani@ieee.org">mahsa.kiani@ieee.org</a><br>
     Jared Marks - <a href="mailto:jared.marks@live.com">jared.marks@live.com</a>
     </i>
     <p></p>
@@ -43,35 +43,71 @@ For this submission, complete the following tasks:
 
 ##### Answer
 
-**Implementation write-up: Jared**
+**Implementation write-up: Aaron**
 
 ```csharp
- static void PrintMenu()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Select an option (1, 2, 3, 4, 5) " +
-                              "or enter 'x' to quit...");
-            Console.WriteLine("1: Add Property");
-            Console.WriteLine("2: Calculate Mean");
-            Console.WriteLine("3: Calculate Variance");
-            Console.WriteLine("4: Calculate Minimum");
-            Console.WriteLine("5: Calculate Maximum");
-            Console.WriteLine();
-        }
+static void SetUp()
+{
+    // add a workbook and set it as active
+    app.Workbooks.Add();
+    workbook = app.ActiveWorkbook;
+
+    // set current worksheet
+    Excel._Worksheet currentSheet = workbook.Worksheets[1];
+
+    // set sheet name
+    currentSheet.Name = "Properties";
+
+    // set columns names
+    currentSheet.Cells[1, "A"] = "Size (sf)";
+    currentSheet.Cells[1, "B"] = "Suburb";
+    currentSheet.Cells[1, "C"] = "City";
+    currentSheet.Cells[1, "D"] = "Value";
+    currentSheet.Cells[1, "E"] = 0;
+
+    // save workbook
+    workbook.SaveAs("property_pricing.xlsx");
+}
 ```
 
-2. **Implement the adding of property information to the sheet** -. The property information headers are as follows:
+**Functionality write-up: Aaron**
+
+2. **Implement the adding of property information to the sheet**. The property information headers are as follows:
 
 a. Size (in square feet)
 b. Suburb
 c. City
 d. Market value
 
-The command line interface already calls a method *"AddPropertyToWorksheet"*, so you will simply have to implement this method.
+The command line interface already calls a method `AddPropertyToWorksheet`, so you will simply have to implement this method.
 
 *Note:* It will be useful here to make use of a counter, which can be stored to the right of the last header, so that you have an easy reference to know how many rows of data are stored in the sheet. This will be useful for the statistical calculations, and to know where each row should be inserted when adding new rows. The counter would be a number stored in a known cell.
 
-3. **Implement statistical methods** -. In the skeleton code you find the following four statistical methods already declared:
+##### Answer
+
+**Implementation write-up: Aaron**
+
+```csharp
+static void AddPropertyToWorksheet(float size, string suburb, string city, float value)
+{
+    // set current worksheet
+    Excel.Worksheet currentSheet = workbook.Worksheets[1];
+            
+    var nrows = currentSheet.Cells[1, "E"].value;
+    nrows += 2; // need to increment since nrows above is the last FILLED row
+            
+    // add property data to the table 
+    currentSheet.Cells[nrows, "A"] = size;
+    currentSheet.Cells[nrows, "B"] = suburb;
+    currentSheet.Cells[nrows, "C"] = city;
+    currentSheet.Cells[nrows, "D"] = value;
+    currentSheet.Cells[1, "E"] = nrows - 1;
+}
+```
+
+**Functionality write-up: Aaron**
+
+3. **Implement statistical methods**. In the skeleton code you find the following four statistical methods already declared:
 
 a. Mean market value
 b. Variance in market value
@@ -79,6 +115,16 @@ c. Minimum market value
 d. Maximum market value
 
 Your task is to update these methods to perform the correct work based on the data from the sheet. These methods are already called in the command line interface, so you only need to implement the method.
+
+##### Answer
+
+**Implementation write-up: Gustavo**
+
+```csharp
+Gustavo
+```
+
+**Functionality write-up: Gustavo**
 
 # Conclusion
 
