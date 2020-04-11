@@ -1,5 +1,5 @@
 
-<img src=\"logo.png\">
+<img src=\"./assets/logo.png\">
 <h2><center>
 MScFE 630 Computational Finance<br><br>
 Group Work Project<br><br>
