@@ -1,16 +1,17 @@
 <img src="./assets/logo.png" align="middle">
 <h2><center>
-MScFE 630 Computational Finance<br><br>
+MScFE 670 Data Feeds and Technology<br><br>
 Group Work Project<br><br>
-July 23, 2019<br><br>
+April 13, 2020<br><br>
 <small><i>
+Aaron Jones - aspcul8r@gmail.com<br>
 Gustavo Campos - gustavoc82@me.com<br>
-Hoang Dinh - hoangdinh.2710@gmail.com<br>
-Bosco Keown - bosco.keown@gmail.com
+Mansa Kiani -mahsa.kiani@ieee.org<br>
+Jared Marks - jared.marks@live.com
 </i></small></center></h2>
 <h2><center>Abstract</center></h2>
 In this article...
-<b><i>Keywords:</i></b> European up-and-out call option, Monte Carlo, Credit Valuation Adjustment.
+<b><i>Keywords:</i></b> Keywords.
 
 # Introduction
 
