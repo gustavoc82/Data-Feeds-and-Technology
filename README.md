@@ -1,3 +1,6 @@
+
+![Image description](./assets/logo.png)
+
 # WQU---Data-Feed---Group-Work-Assignment
 
 ### Abstract - Mahsa
