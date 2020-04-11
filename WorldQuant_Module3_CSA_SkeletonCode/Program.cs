@@ -12,7 +12,7 @@ namespace WorldQuant_Module3_CSA_SkeletonCode
         {
             app = new Excel.Application();
             app.Visible = true;
-            try1
+            try
             {
                 workbook = app.Workbooks.Open("property_pricing.xlsx", ReadOnly: false);
             }
