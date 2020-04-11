@@ -74,10 +74,10 @@ static void SetUp()
 
 2. **Implement the adding of property information to the sheet**. The property information headers are as follows:
 
-1. Size (in square feet)
-2. Suburb
-3. City
-4. Market value
+a) Size (in square feet)
+b) Suburb
+c) City
+d) Market value
 
 The command line interface already calls a method `AddPropertyToWorksheet`, so you will simply have to implement this method.
 
@@ -109,10 +109,10 @@ static void AddPropertyToWorksheet(float size, string suburb, string city, float
 
 3. **Implement statistical methods**. In the skeleton code you find the following four statistical methods already declared:
 
-1. Mean market value
-2. Variance in market value
-3. Minimum market value
-4. Maximum market value
+a) Mean market value
+b) Variance in market value
+c) Minimum market value
+d) Maximum market value
 
 Your task is to update these methods to perform the correct work based on the data from the sheet. These methods are already called in the command line interface, so you only need to implement the method.
 
