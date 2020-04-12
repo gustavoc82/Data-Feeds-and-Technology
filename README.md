@@ -105,7 +105,7 @@ After the Main method has opened an existing workbook or has run through the `Se
 
 When the console user enters number 1 (Add Property), Main method prompts to fill variables size, suburb, city, and value. When enter has been pressed for all prompts, Main method calls `AddPropertyToWorksheet` and passes the user filled variables.
 
-![property_entry](property_entry.png)
+![property_entry](property_entries.png)
 
 `AddPropertyToWorksheet` Method
 ```csharp
