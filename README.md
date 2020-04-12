@@ -97,11 +97,11 @@ The command line interface already calls a method `AddPropertyToWorksheet`, so y
 
 *Note:* It will be useful here to make use of a counter, which can be stored to the right of the last header, so that you have an easy reference to know how many rows of data are stored in the sheet. This will be useful for the statistical calculations, and to know where each row should be inserted when adding new rows. The counter would be a number stored in a known cell.
 
-##### Answer
+#### Answer
 
 After the Main method has opened an existing workbook or has run through the `SetUp` method described above, it opens a console screen and awaits user input:
 
-![console_menu](gustavoc82/console_menu.png)
+![console_menu](console_menu.png)
 
 When the console user enters number 1 (Add Property), Main method prompts to fill variables size, suburb, city, and value. When enter has been pressed for all prompts, Main method calls `AddPropertyToWorksheet` and passes the user filled variables.
 
