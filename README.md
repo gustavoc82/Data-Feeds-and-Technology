@@ -41,7 +41,7 @@ For this submission, complete the following tasks:
 
 1. **Set up the worksheet when the application is launched for the first time**. The main method already calls a method `SetUp`; therefore, you simply have to implement this method, which should create a new Excel workbook titled `property_pricing.xlsx`
 
-##### Answer
+#### Answer
 
 When the application is launched, the Main method attempts to open an existing workbook: 
 ```csharp
@@ -105,7 +105,7 @@ After the Main method has opened an existing workbook or has run through the `Se
 
 When the console user enters number 1 (Add Property), Main method prompts to fill variables size, suburb, city, and value. When enter has been pressed for all prompts, Main method calls `AddPropertyToWorksheet` and passes the user filled variables.
 
-![console_menu](property_entry.png)
+![property_entry](property_entry.png)
 
 `AddPropertyToWorksheet` Method
 ```csharp
@@ -127,7 +127,7 @@ static void AddPropertyToWorksheet(float size, string suburb, string city, float
 ```
 The nrow counter variable refers to the value present in row 1, cell E. Following the initial user experience desribed in the `SetUp` method, the nrow value is initiated as 0. For each loop of user console input in with value '1' (Add Property), the nrow value advances to a new row and populates cells based on new user input.
 
-![console_menu](excel_entry.png)
+![excel_entry](excel_entry.png)
 
 3. **Implement statistical methods**. In the skeleton code you find the following four statistical methods already declared:
 
