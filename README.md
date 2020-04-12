@@ -118,10 +118,132 @@ Your task is to update these methods to perform the correct work based on the da
 
 ##### Answer
 
+
 **Implementation write-up: Gustavo**
 
+
+### Mean market Value
+
 ```csharp
-Gustavo
+static float CalculateMean()
+{
+    // set current worksheet
+    Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+    // number of properties
+    var nrows = currentSheet.Cells[1, "E"].value;
+
+    if(nrows > 0)
+    {
+        //This is how we get range from Excel worksheet
+        var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+        // create a list with the range values
+        List<float> prices = new List<float>();
+        foreach (var cell in range)
+        {
+            prices.Add((int)cell.Value);
+        }
+
+        // return mean
+        return prices.Average();
+    }
+
+    return 0.0f;
+}
+```
+
+### Variance in market value
+
+```csharp
+static float CalculateVariance()
+{
+    // set current worksheet
+    Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+    // number of properties
+    var nrows = currentSheet.Cells[1, "E"].value;
+
+    if (nrows > 0)
+    {
+        //This is how we get range from Excel worksheet
+        var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+        // create a list with the range values
+        List<float> prices = new List<float>();
+        foreach (var cell in range)
+        {
+            prices.Add((int)cell.Value);
+        }
+
+        // return Variance
+        return (float)(prices.Average(z => z * z) - Math.Pow(prices.Average(), 2));
+    }
+
+    return 0.0f;
+}
+```
+
+### Minimum market value
+
+```csharp
+static float CalculateMinimum()
+{
+    // set current worksheet
+    Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+    // number of properties
+    var nrows = currentSheet.Cells[1, "E"].value;
+
+    if (nrows > 0)
+    {
+        //This is how we get range from Excel worksheet
+        var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+        // create a list with the range values
+        List<float> prices = new List<float>();
+        foreach (var cell in range)
+        {
+            prices.Add((int)cell.Value);
+        }
+
+        // return min
+        return prices.Min();
+    }
+
+    return 0.0f;
+}
+```
+
+### Maximum market value
+
+```csharp
+static float CalculateMaximum()
+{
+    // set current worksheet
+    Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+    // number of properties
+    var nrows = currentSheet.Cells[1, "E"].value;
+
+    if (nrows > 0)
+    {
+        //This is how we get range from Excel worksheet
+        var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+        // create a list with the range values
+        List<float> prices = new List<float>();
+        foreach (var cell in range)
+        {
+            prices.Add((int)cell.Value);
+        }
+
+        // return max
+        return prices.Max();
+    }
+
+    return 0.0f;
+}
 ```
 
 **Functionality write-up: Gustavo**

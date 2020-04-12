@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Data_Feeds_and_Technology
@@ -13,7 +15,7 @@ namespace Data_Feeds_and_Technology
             app = new Excel.Application
             {
                 Visible = true,
-                WindowState = Excel.XlWindowState.xlMaximized
+                //WindowState = Excel.XlWindowState.xlMaximized
             };
             try
             {
@@ -112,6 +114,9 @@ namespace Data_Feeds_and_Technology
             currentSheet.Cells[1, "D"] = "Value";
             currentSheet.Cells[1, "E"] = 0;
 
+            // some formatting.
+            //currentSheet.Rows[0].Style.Font.Weight = BoldWeight;
+
             // save workbook
             workbook.SaveAs("property_pricing.xlsx");
         }
@@ -121,6 +126,7 @@ namespace Data_Feeds_and_Technology
             // set current worksheet
             Excel.Worksheet currentSheet = workbook.Worksheets[1];
             
+            // number of properties (rows)
             var nrows = currentSheet.Cells[1, "E"].value;
             nrows += 2; // need to increment since nrows above is the last FILLED row
 
@@ -134,25 +140,109 @@ namespace Data_Feeds_and_Technology
 
         static float CalculateMean()
         {
-            // TODO: Implement this method
+            // set current worksheet
+            Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+            // number of properties
+            var nrows = currentSheet.Cells[1, "E"].value;
+
+            if(nrows > 0)
+            {
+                //This is how we get range from Excel worksheet
+                var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+                // create a list with the range values
+                List<float> prices = new List<float>();
+                foreach (var cell in range)
+                {
+                    prices.Add((int)cell.Value);
+                }
+
+                // return mean
+                return prices.Average();
+            }
+
             return 0.0f;
         }
 
         static float CalculateVariance()
         {
-            // TODO: Implement this method
+            // set current worksheet
+            Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+            // number of properties
+            var nrows = currentSheet.Cells[1, "E"].value;
+
+            if (nrows > 0)
+            {
+                //This is how we get range from Excel worksheet
+                var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+                // create a list with the range values
+                List<float> prices = new List<float>();
+                foreach (var cell in range)
+                {
+                    prices.Add((int)cell.Value);
+                }
+
+                // return Variance
+                return (float)(prices.Average(z => z * z) - Math.Pow(prices.Average(), 2));
+            }
+
             return 0.0f;
         }
 
         static float CalculateMinimum()
         {
-            // TODO: Implement this method
+            // set current worksheet
+            Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+            // number of properties
+            var nrows = currentSheet.Cells[1, "E"].value;
+
+            if (nrows > 0)
+            {
+                //This is how we get range from Excel worksheet
+                var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+                // create a list with the range values
+                List<float> prices = new List<float>();
+                foreach (var cell in range)
+                {
+                    prices.Add((int)cell.Value);
+                }
+
+                // return min
+                return prices.Min();
+            }
+
             return 0.0f;
         }
 
         static float CalculateMaximum()
         {
-            // TODO: Implement this method
+            // set current worksheet
+            Excel.Worksheet currentSheet = workbook.Worksheets[1];
+
+            // number of properties
+            var nrows = currentSheet.Cells[1, "E"].value;
+
+            if (nrows > 0)
+            {
+                //This is how we get range from Excel worksheet
+                var range = currentSheet.Range["D2:D" + (nrows + 1).ToString()];
+
+                // create a list with the range values
+                List<float> prices = new List<float>();
+                foreach (var cell in range)
+                {
+                    prices.Add((int)cell.Value);
+                }
+
+                // return max
+                return prices.Max();
+            }
+
             return 0.0f;
         }
     }
