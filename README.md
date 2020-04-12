@@ -84,7 +84,7 @@ static void SetUp()
 ```
 As the Main method has visbility set to true ```app.Visible=true;```, an excel workbook opens and populates the active worksheet with specified header names: Size (sf), Subrub, City, Value, and 0. The sheet name is changed from default Sheet1 to Properties and then is saved as property_pricing.xlsx. In this instance, '0' is being used to initiate a row counter for future use.
 
-![setupmethod_results](setupmethod_results.png)
+![setupmethod_results](./assets/setupmethod_results.png)
 
 2. **Implement the adding of property information to the sheet**. The property information headers are as follows:
 
@@ -101,11 +101,11 @@ The command line interface already calls a method `AddPropertyToWorksheet`, so y
 
 After the Main method has opened an existing workbook or has run through the `SetUp` method described above, it opens a console screen and awaits user input:
 
-![console_menu](console_menu.png)
+![console_menu](./assets/console_menu.png)
 
 When the console user enters number 1 (Add Property), Main method prompts to fill variables size, suburb, city, and value. When enter has been pressed for all prompts, Main method calls `AddPropertyToWorksheet` and passes the user filled variables.
 
-![property_entry](property_entries.png)
+![property_entry](./assets/property_entries.png)
 
 `AddPropertyToWorksheet` Method
 ```csharp
@@ -127,7 +127,7 @@ static void AddPropertyToWorksheet(float size, string suburb, string city, float
 ```
 The nrow counter variable refers to the value present in row 1, cell E. Following the initial user experience desribed in the `SetUp` method, the nrow value is initiated as 0. For each loop of user console input in with value '1' (Add Property), the nrow value advances to a new row and populates cells based on new user input.
 
-![excel_entry](excel_entry.png)
+![excel_entry](./assets/excel_entry.png)
 
 3. **Implement statistical methods**. In the skeleton code you find the following four statistical methods already declared:
 
