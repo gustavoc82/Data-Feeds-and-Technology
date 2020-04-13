@@ -13,10 +13,9 @@
     <p><b>Abstract</b></p>
 </div>
 In this article... <b>Mahsa Task</b><br>
+<p></p>
 <b><i>Keywords:</i></b> Keywords...
 <p></p>
-
----
 
 # Introduction
 
@@ -26,7 +25,7 @@ In this article... <b>Mahsa Task</b><br>
 
 For this submission, you will explore the use of C# and Excel to keep track of the pricing of various properties. You are required to implement various useful statistical calculations which will allow you to gain further insight into the overall trends of the property market.
 
-You are provided with skeleton code which includes an already implemented command line interface, which functions according to the menu presented when the application is run:
+You are provided with a skeleton code which includes an already implemented command-line interface, which functions according to the menu presented when the application is run:
 
 ```
 Select an option (1,2,3,4,5) or enter 'x' to quit...
@@ -82,7 +81,7 @@ static void SetUp()
     workbook.SaveAs("property_pricing.xlsx");
 }
 ```
-As the Main method has visbility set to true ```app.Visible=true;```, an excel workbook opens and populates the active worksheet with specified header names: Size (sf), Subrub, City, Value, and 0. The sheet name is changed from default Sheet1 to Properties and then is saved as property_pricing.xlsx. In this instance, '0' is being used to initiate a row counter for future use.
+As the Main method has visibility set to true ```app.Visible=true;```, an excel workbook opens and populates the active worksheet with specified header names: Size (sf), Suburb, City, Value, and 0. The sheet name is changed from default Sheet1 to Properties and then is saved as property_pricing.xlsx. In this instance, '0' is being used to initiate a row counter for future use.
 
 ![setupmethod_results](./assets/setupmethod_results.png)
 
@@ -93,9 +92,9 @@ As the Main method has visbility set to true ```app.Visible=true;```, an excel w
 - City
 - Market value
 
-The command line interface already calls a method `AddPropertyToWorksheet`, so you will simply have to implement this method.
+The command-line interface already calls a method `AddPropertyToWorksheet`, so you will simply have to implement this method.
 
-*Note:* It will be useful here to make use of a counter, which can be stored to the right of the last header, so that you have an easy reference to know how many rows of data are stored in the sheet. This will be useful for the statistical calculations, and to know where each row should be inserted when adding new rows. The counter would be a number stored in a known cell.
+*Note:* It will be useful here to make use of a counter, which can be stored to the right of the last header so that you have an easy reference to know how many rows of data are stored in the sheet. This will be useful for the statistical calculations, and to know where each row should be inserted when adding new rows. The counter would be a number stored in a known cell.
 
 #### Answer
 
@@ -136,15 +135,27 @@ The nrow counter variable refers to the value present in row 1, cell E. Followin
 - Minimum market value
 - Maximum market value
 
-Your task is to update these methods to perform the correct work based on the data from the sheet. These methods are already called in the command line interface, so you only need to implement the method.
+Your task is to update these methods to perform the correct work based on the data from the sheet. These methods are already called in the command-line interface, so you only need to implement the method.
 
 ##### Answer
 
 
-**Implementation write-up: Gustavo**
+First, we generate a list of properties data using `option 1`, let's see the table.
 
+![prices](./assets/prices.png)
 
-### Mean market Value
+For each function we perform the following tasks:
+
+- Set the first sheet as the current worksheet.
+- Extract the numbers of properties in the data `nrows`.
+- Check that the `nrows` is greather than 0.
+- Use this value to feed the range selection function which returns an array of objects that include the prices of the properties.
+- Extract the values of the cells in the data range and put it in a `List`.
+- Use the `System.Linq` to perform the required calculation and return the value. 
+
+Now, let's present each function's implementation separately and see the results using this data. 
+
+#### Mean market Value
 
 ```csharp
 static float CalculateMean()
@@ -175,7 +186,11 @@ static float CalculateMean()
 }
 ```
 
-### Variance in market value
+##### Result
+
+![prices](./assets/mean.png)
+
+#### Variance in market value
 
 ```csharp
 static float CalculateVariance()
@@ -206,7 +221,11 @@ static float CalculateVariance()
 }
 ```
 
-### Minimum market value
+##### Result
+
+![prices](./assets/variance.png)
+
+#### Minimum market value
 
 ```csharp
 static float CalculateMinimum()
@@ -236,6 +255,10 @@ static float CalculateMinimum()
     return 0.0f;
 }
 ```
+
+#### Result
+
+![prices](./assets/min.png)
 
 ### Maximum market value
 
@@ -268,7 +291,13 @@ static float CalculateMaximum()
 }
 ```
 
-**Functionality write-up: Gustavo**
+##### Result
+
+![prices](./assets/max.png)
+
+Finally, we compare the results obtained in the program with the results generated by excel function and all of them matched.
+
+![prices](./assets/results.png)
 
 # Conclusion
 
