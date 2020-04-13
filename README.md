@@ -138,11 +138,13 @@ The nrow counter variable refers to the value present in row 1, cell E. Followin
 
 Your task is to update these methods to perform the correct work based on the data from the sheet. These methods are already called in the command line interface, so you only need to implement the method.
 
-##### Answer
+#### Answer
 
+To demonstrate fucntionationality we have prepopulated random property square footage, suburbs, cities, and values.
 
-**Implementation write-up: Gustavo**
+![random_entries](./assets/randompropertyvalues.png)
 
+A console user can investigate mean price by selecting option 2 Calculate Mean which prompts the Main method to call the following CalculateMean() method which utilizes the count cell established at setup to establish the necessary range for calculation and appends the cell values to a list before returning the mean in a float variable.
 
 ### Mean market Value
 
@@ -174,8 +176,13 @@ static float CalculateMean()
     return 0.0f;
 }
 ```
+Console output from option 2:
+
+![meanvalue](./assets/meanvalue.png)
 
 ### Variance in market value
+
+When option 3 is selected in the application console, Main method calls method `CalculateVariance()` which also pulls a range of cell values based on the `nrow` count before employing a variance formula.
 
 ```csharp
 static float CalculateVariance()
@@ -205,8 +212,13 @@ static float CalculateVariance()
     return 0.0f;
 }
 ```
+Console Ouput Option 3:
+
+![pricevariance](./assets/pricevariance.png)
 
 ### Minimum market value
+
+When option 4 Calculate Minimum is selected, Main Method calls method `CalculateMinimum()` and the same applicable range of property value cells is selected based off of `nrows` from which values are appended to an internal list. C# function `Min()` is then used to display the minimum value. 
 
 ```csharp
 static float CalculateMinimum()
@@ -236,8 +248,13 @@ static float CalculateMinimum()
     return 0.0f;
 }
 ```
+Console Output Option 4:
+
+![minprice](./assets/minprice.png)
 
 ### Maximum market value
+
+Lastly, when a console user selects option 5 Calculate Maximum, Main method calls method `CalculateMaximum()` which refers to `nrows`, grabs the applicable values of property value cells, appends to an internal list, and calls fucntion `Max()` to produce the maximum value present on the worksheet.
 
 ```csharp
 static float CalculateMaximum()
@@ -267,8 +284,10 @@ static float CalculateMaximum()
     return 0.0f;
 }
 ```
+Console Output Option 5:
 
-**Functionality write-up: Gustavo**
+![maxprice](./assets/maxprice.png)
+
 
 # Conclusion
 
