@@ -14,7 +14,7 @@
 </div>
 In this article, we explore the use of C# combined with Excel to collect and analyze data. First, we allow the user to enter the data information of properties' prices, sizes, and locations. Then, we implement basics statistical functions that allow the user to summarize the data.<br>
 <p></p>
-<b><i>Keywords:</i></b> Keywords...
+<b><i>Keywords:</i></b> C#, Excel, Data, Statistics.
 <p></p>
 
 # Introduction
