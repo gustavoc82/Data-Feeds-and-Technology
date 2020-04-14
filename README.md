@@ -19,7 +19,13 @@ In this article, we explore the use of C# combined with Excel to collect and ana
 
 # Introduction
 
-**Mahsa Task**
+This project is a command-line interface, implemented using C# and Excel, which tracks property prices. When the application is launched for the first time is to call the `SetUp` method in order to create a new Excel workbook named `property_pricing.xlsx`. The interface is implemented in a way that when the application is launched, the main method attempts to open an existing workbook; if the workbook has not been saved before in the file path, method `SetUp` is called which adds a workbook and sets it as active; then the current worksheet, sheet names, and column names are set; finally, the workbook is saved. As the visibility in the main method is set to true, an excel workbook opens, and then populates the active worksheet with specified header names. The sheet name is changed from default Sheet1 to Properties' and afterwards, it is saved as `property_pricing.xlsx`. It is important to note that in this instance, '0' is being used in order to initiate a row counter for future use.
+
+In the second section, adding property functionality is implemented, which adds property information to the sheet. After the main method has opened an existing workbook or has run through the `SetUp` method, it opens a console screen and awaits user input. If the user enters the value of 1 (related to adding property), the main method prompts to fill four variables: size, suburb, city, and value. When the Enter key has been pressed for all prompts, the main method calls `AddPropertyToWorksheet`, and then passes the user filled variables. `AddPropertyToWorksheet` method sets the current worksheet, and then adds the property data to the table. The nrow counter variable in this method refers to the value present in row 1, cell E. Following the initial user experience described in the `SetUp` method, the nrow value is initiated to 0. For each loop of user console with the input value of '1' (related to adding property), the nrow value advances to a new row, and populates the cells based on new user input.
+
+In the third section, four statistical methods including mean market value, variance in market value, minimum market value, and maximum market value are implemented. To demonstrate functionality, random property square footage, suburbs, cities, and values are prepopulated.
+
+<!-- Six tasks are performed for each function. At first, the current worksheet is set as the first sheet. Then, the numbers of properties in the data `nrows` are extracted. Afterwards, it is checked whether `nrows` is greater than 0. These values are used to feed the range selection function which returns an array of objects that include the prices of the properties. Then, the values of the cells in the data range are extracted; and are put in a `List`. Finally, `System.Linq` is used to perform the required calculation and return the value. -->
 
 # Using C# and Excel to Track Property Prices
 
@@ -29,11 +35,11 @@ You are provided with an skeleton code which includes an already implemented com
 
 ```
 Select an option (1,2,3,4,5) or enter 'x' to quit...
-1: Add Property
-2: Calculate Mean
-3: Calculate Variance
-4: Calculate Minimum
-5: Calculate Maximum
+  1: Add Property
+  2: Calculate Mean
+  3: Calculate Variance
+  4: Calculate Minimum
+  5: Calculate Maximum
 ```
 
 For this submission, complete the following tasks:
@@ -43,6 +49,7 @@ For this submission, complete the following tasks:
 #### Answer
 
 When the application is launched, the main method attempts to open an existing workbook: 
+
 ```csharp
 try
 {
@@ -56,31 +63,30 @@ If the workbook has not been saved before in the file path, method `SetUp` is ca
         Setup();
     }
 ```
-`Setup` Method   
+
+#### `Setup` Method   
+
 ```csharp
 static void SetUp()
 {
     // add a workbook and set it as active
     app.Workbooks.Add();
     workbook = app.ActiveWorkbook;
-
     // set current worksheet
     Excel._Worksheet currentSheet = workbook.Worksheets[1];
-
     // set sheet name
     currentSheet.Name = "Properties";
-
     // set columns names
     currentSheet.Cells[1, "A"] = "Size (sf)";
     currentSheet.Cells[1, "B"] = "Suburb";
     currentSheet.Cells[1, "C"] = "City";
     currentSheet.Cells[1, "D"] = "Value";
     currentSheet.Cells[1, "E"] = 0;
-
     // save workbook
     workbook.SaveAs("property_pricing.xlsx");
 }
 ```
+
 As the main method has visibility  set to true ```app.Visible=true;```, an excel workbook opens and populates the active worksheet with specified header names: Size (sf), Suburb, City, Value, and 0. The sheet name is changed from default Sheet1 to Properties and then is saved as property_pricing.xlsx. In this instance, '0' is being used to initiate a row counter for future use.
 
 ![Setup Method](./assets/setupmethod_results.png)
@@ -94,7 +100,7 @@ As the main method has visibility  set to true ```app.Visible=true;```, an excel
 
 The command-line interface already calls a method `AddPropertyToWorksheet`, so you will simply have to implement this method.
 
-*Note:* It will be useful here to make use of a counter, which can be stored to the right of the last header so that you have an easy reference to know how many rows of data are stored in the sheet. This will be useful for the statistical calculations, and to know where each row should be inserted when adding new rows. The counter would be a number stored in a known cell.
+**Note:** It will be useful here to make use of a counter, which can be stored to the right of the last header so that you have an easy reference to know how many rows of data are stored in the sheet. This will be useful for the statistical calculations, and to know where each row should be inserted when adding new rows. The counter would be a number stored in a known cell.
 
 #### Answer
 
@@ -106,7 +112,8 @@ When the console user enters number 1 (Add Property), the main method prompts to
 
 ![Property Entry](./assets/property_entries.png)
 
-`AddPropertyToWorksheet` Method
+#### `AddPropertyToWorksheet` Method
+
 ```csharp
 static void AddPropertyToWorksheet(float size, string suburb, string city, float value)
 {
@@ -124,7 +131,8 @@ static void AddPropertyToWorksheet(float size, string suburb, string city, float
     currentSheet.Cells[1, "E"] = nrows - 1;
 }
 ```
-The nrow counter variable refers to the value present in row 1, cell E. Following the initial user experience desribed in the `SetUp` method, the nrow value is initiated as 0. For each loop of user console input in with value '1' (Add Property), the nrow value advances to a new row and populates cells based on new user input.
+
+The `nrow` counter variable refers to the value present in row 1, cell E. Following the initial user experience desribed in the `SetUp` method, the nrow value is initiated as 0. For each loop of user console input in with value '1' (Add Property), the nrow value advances to a new row and populates cells based on new user input.
 
 ![Excel Entry](./assets/excel_entry.png)
 
@@ -152,11 +160,11 @@ For each function we perform the following tasks:
 - Extract the values of the cells in the data range and put it in a `List`.
 - Use the `System.Linq` to perform the required calculation and return the value. 
 
-Now, let's present each function's implementation separately and see the results using this data. 
+In the following section, implementation of each function is described in more details. 
 
-### Mean market Value
+## Mean Market Value
 
-A console user can investigate mean price by selecting option 2 Calculate Mean which prompts the main method to call the following `CalculateMean()` method which utilizes the count cell established at setup to establish the necessary range for calculation and appends the cell values to a list before returning the mean in a float variable.
+Using the mean market value functionality, a console user is able to investigate the mean price by selecting option 2; this option calculates the mean value; choosing option 2 prompts the main method to call the `CalculateMean()` method, which utilizes the count cell defined at setup to establish the necessary range for calculation, and appends the cell values to a list before returning the mean as a float variable.
 
 ```csharp
 static float CalculateMean()
@@ -186,13 +194,16 @@ static float CalculateMean()
     return 0.0f;
 }
 ```
+
+`CalculateMean()` method sets the current worksheet, as well as the number of properties. The range from Excel worksheet is taken, and a list with the range values is created. Afterwards, the mean value of the number in the list is returned by the method.
+
 Console output from option 2:
 
-![Mean Value](./assets/meanvalue.png)
+![Price Mean](./assets/meanvalue.png)
 
-### Variance in market value
+## Variance in Market Value
 
-When option 3 is selected in the application console, the main method calls method `CalculateVariance()` which also pulls a range of cell values based on the `nrow` count before employing a variance formula.
+Using the variance in market value functionality, the console user could investigate the variance in market value by selecting option 3; When option 3 is selected in the application console, the main method calls the `CalculateVariance()` method, which extracts a range of cell values based on the `nrow` count before applying the variance formula.
 
 ```csharp
 static float CalculateVariance()
@@ -226,9 +237,9 @@ Console Ouput Option 3:
 
 ![Price Variance](./assets/pricevariance.png)
 
-### Minimum market value
+## Minimum Market Value
 
-When option 4 Calculate Minimum is selected, the main Method calls method `CalculateMinimum()` and the same applicable range of property value cells is selected based on `nrows` from which values are appended to an internal list. C# function `Min()` is then used to display the minimum value. 
+Using the minimum market value functionality, the user is able to investigate the minimum value of the market. When option 4 is selected, the main Method calls the `CalculateMinimum()` method and the same applicable range of property value cells is selected based on `nrows` from which values are appended to an internal list. Afterwards, the internal C# function called `Min()` is used to return the minimum value.
 
 ```csharp
 static float CalculateMinimum()
@@ -258,13 +269,14 @@ static float CalculateMinimum()
     return 0.0f;
 }
 ```
+
 Console Output Option 4:
 
 ![Min Price](./assets/minprice.png)
 
-### Maximum market value
+## Maximum Market Value
 
-Lastly, when a console user selects option 5 Calculate Maximum, the main method calls method `CalculateMaximum()` which refers to `nrows`, grabs the applicable values of property value cells, appends to an internal list, and calls function `Max()` to produce the maximum value present on the worksheet.
+Lastly, using the maximum market value functionality, the console user could investigate the maximum value of the market. When option 5 is selected by the user,  the main method calls the `CalculateMaximum()` method, which refers to `nrows`, extracts the applicable values of the property value cells, and appends the values to an internal list;  afterwards, it calls `Max()` function to compute the maximum value presented on the worksheet.
 
 ```csharp
 static float CalculateMaximum()
@@ -298,10 +310,9 @@ Console Output Option 5:
 
 ![Max Price](./assets/maxprice.png)
 
-
 # Conclusion
 
-**Mahsa Task**
+A command-line interface is implemented using C# and Excel; the program enables the console user to track the property prices. Four statistical methods, including mean market value, variance in market value, minimum market value, and maximum market value, are implemented. Using the implemented interface, the user is able to add a property, and compute mean, variance, minimum, and maximum. 
 
 # References
 
@@ -310,3 +321,5 @@ https://docs.microsoft.com/en-us/dotnet/api/system.linq?view=netframework-4.8
 
 Docs.microsoft.com. (2020). Microsoft.Office.Interop.Excel Namespace. [online] Available at:
 https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel?view=excel-pia
+
+
