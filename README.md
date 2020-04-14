@@ -2,7 +2,7 @@
     <img src="./assets/logo.png" width="290">
     <p><b>MScFE 670 Data Feeds and Technology<br>
     Group Work Assignment</b><br>
-    April 13, 2020</p>
+    April 14, 2020</p>
     <i>
     Aaron Jones - <a href="mailto:aspcul8r@gmail.com">aspcul8r@gmail.com</a><br>
     Gustavo Campos - <a href="mailto:gustavoc82@me.com">gustavoc82@me.com</a><br>
@@ -12,7 +12,7 @@
     <p></p>
     <p><b>Abstract</b></p>
 </div>
-In this article... <b>Mahsa Task</b><br>
+In this article, we explore the use of C# combined with Excel to collect and analyze data. First, we allow the user to enter the data information of properties' prices, sizes, and locations. Then, we implement basics statistical functions that allow the user to summarize the data.<br>
 <p></p>
 <b><i>Keywords:</i></b> Keywords...
 <p></p>
@@ -304,3 +304,9 @@ Console Output Option 5:
 **Mahsa Task**
 
 # References
+
+Docs.microsoft.com. (2019). System.Linq Namespace. [online] Available at:
+https://docs.microsoft.com/en-us/dotnet/api/system.linq?view=netframework-4.8
+
+Docs.microsoft.com. (2019). Microsoft.Office.Interop.Excel Namespace. [online] Available at:
+https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel?view=excel-pia
