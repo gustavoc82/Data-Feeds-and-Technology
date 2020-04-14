@@ -305,8 +305,8 @@ Console Output Option 5:
 
 # References
 
-Docs.microsoft.com. (2019). System.Linq Namespace. [online] Available at:
+Docs.microsoft.com. (2020). System.Linq Namespace. [online] Available at:
 https://docs.microsoft.com/en-us/dotnet/api/system.linq?view=netframework-4.8
 
-Docs.microsoft.com. (2019). Microsoft.Office.Interop.Excel Namespace. [online] Available at:
+Docs.microsoft.com. (2020). Microsoft.Office.Interop.Excel Namespace. [online] Available at:
 https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.interop.excel?view=excel-pia
