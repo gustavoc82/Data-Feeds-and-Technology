@@ -83,7 +83,7 @@ static void SetUp()
 ```
 As the main method has visibility  set to true ```app.Visible=true;```, an excel workbook opens and populates the active worksheet with specified header names: Size (sf), Suburb, City, Value, and 0. The sheet name is changed from default Sheet1 to Properties and then is saved as property_pricing.xlsx. In this instance, '0' is being used to initiate a row counter for future use.
 
-![setupmethod_results](./assets/setupmethod_results.png)
+![Setup Method](./assets/setupmethod_results.png)
 
 2. **Implement the adding of property information to the sheet**. The property information headers are as follows:
 
@@ -100,11 +100,11 @@ The command-line interface already calls a method `AddPropertyToWorksheet`, so y
 
 After the main method has opened an existing workbook or has run through the `SetUp` method described above, it opens a console screen and awaits user input:
 
-![console_menu](./assets/console_menu.png)
+![Console Menu](./assets/console_menu.png)
 
 When the console user enters number 1 (Add Property), the main method prompts to fill variables size, suburb, city, and value. When enter has been pressed for all prompts, the main method calls `AddPropertyToWorksheet` and passes the user filled variables.
 
-![property_entry](./assets/property_entries.png)
+![Property Entry](./assets/property_entries.png)
 
 `AddPropertyToWorksheet` Method
 ```csharp
@@ -126,7 +126,7 @@ static void AddPropertyToWorksheet(float size, string suburb, string city, float
 ```
 The nrow counter variable refers to the value present in row 1, cell E. Following the initial user experience desribed in the `SetUp` method, the nrow value is initiated as 0. For each loop of user console input in with value '1' (Add Property), the nrow value advances to a new row and populates cells based on new user input.
 
-![excel_entry](./assets/excel_entry.png)
+![Excel Entry](./assets/excel_entry.png)
 
 3. **Implement statistical methods**. In the skeleton code you find the following four statistical methods already declared:
 
@@ -141,7 +141,7 @@ Your task is to update these methods to perform the correct work based on the da
 
 To demonstrate functionality we have prepopulated random property square footage, suburbs, cities, and values Let's see the table.
 
-![random_entries](./assets/randompropertyvalues.png)
+![Random Entries](./assets/randompropertyvalues.png)
 
 For each function we perform the following tasks:
 
@@ -188,7 +188,7 @@ static float CalculateMean()
 ```
 Console output from option 2:
 
-![meanvalue](./assets/meanvalue.png)
+![Mean Value](./assets/meanvalue.png)
 
 ### Variance in market value
 
@@ -224,7 +224,7 @@ static float CalculateVariance()
 ```
 Console Ouput Option 3:
 
-![pricevariance](./assets/pricevariance.png)
+![Price Variance](./assets/pricevariance.png)
 
 ### Minimum market value
 
@@ -260,7 +260,7 @@ static float CalculateMinimum()
 ```
 Console Output Option 4:
 
-![minprice](./assets/minprice.png)
+![Min Price](./assets/minprice.png)
 
 ### Maximum market value
 
@@ -296,7 +296,7 @@ static float CalculateMaximum()
 ```
 Console Output Option 5:
 
-![maxprice](./assets/maxprice.png)
+![Max Price](./assets/maxprice.png)
 
 
 # Conclusion
