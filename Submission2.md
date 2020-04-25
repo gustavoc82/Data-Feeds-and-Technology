@@ -2,7 +2,7 @@
     <img src="./assets/logo.png" width="290">
     <p><b>MScFE 670 Data Feeds and Technology<br>
     Group Work Assignment</b><br>
-    April 25, 2020</p>
+    April 27, 2020</p>
     <i>
     Aaron Jones - <a href="mailto:aspcul8r@gmail.com">aspcul8r@gmail.com</a><br>
     Gustavo Campos - <a href="mailto:gustavoc82@me.com">gustavoc82@me.com</a><br>
@@ -46,11 +46,11 @@ For this submission, your task is to describe and compare the key concepts of di
 
 For each of the technologies above, discuss the following:
 
-1. Scalability – i.e. the ability for the system to process transactions
-2. Consensus protocol – i.e. how the network reaches a state of consensus or how the integrity of the ledger is maintained.
-3. Privacy – i.e. the degree to which users and transactions are private.
-4. Degree of decentralization – i.e. whether there are central points of failure or authority.
-5. Settlement finality – i.e. whether transactions are truly final and irrevocable.
+1. _Scalability_ – i.e. the ability for the system to process transactions.
+2. _Consensus protocol_ – i.e. how the network reaches a state of consensus or how the integrity of the ledger is maintained.
+3. _Privacy_ – i.e. the degree to which users and transactions are private.
+4. _Degree of decentralization_ – i.e. whether there are central points of failure or authority.
+5. _Settlement finality_ – i.e. whether transactions are truly final and irrevocable.
 
 Write a report of 1-2 pages for each of the points above.
 
@@ -104,6 +104,6 @@ Write a report of 1-2 pages for each of the points above.
 
 # Conclusion
 
-...
+...@
 
 # References
