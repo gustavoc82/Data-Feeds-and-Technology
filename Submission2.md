@@ -104,21 +104,54 @@ Transaction finality is based on the consensus protocol being employed. If votin
 
 ## Corda
 
+Corda is an open-source blockchain platform developed by R3. The goal of Corda is to provide building blocks for distributed applications in the areas of finance and business, specifically when it comes to agreements, documents, and other data where two parties would like to maintain accurate, up to date versions of the same data.
+
+Corda has been open-source since 2016 and has seen adoption by governments, central banks, and financial institutions as a way to track transactions in a scalable, private, and decentralized manner. Despite the blockchain connection however, Corda differs from other technologies such as Bitcoin and Ethereum in the sense that there is no chain of blocks but rather a distributed database technology to manage the state of transactions.
+
+Corda's design favors use cases where the parties involved in a transaction trust each other, but not enough to allow the counterparty to maintain all of the records. Corda allows counterparts to have a definite, robust understanding of the state of an agreement or other data at any given time.
+
 ### Scalability
+
+One attribute that makes Corda unique is it's ability to scale. This is a direct consequence of the consensus protocol used to verify transactions, but at the expense of some transparency (corda.net). In a traditional blockchain system, each node must verify each transaction, thus the chain is constrained by the weakest link. However, each node in the Corda system does not see each transaction. In fact, the transactions are distributed amongst the nodes, allowing for much greater throughput. 
+
+However, there is a weakness to this type of distribution that ultimately hurts scalability. In the event that an asset has a very long history of transactions associated with it, a node that is required to process this transaction for the first time must verify each proceeding transaction. This can lead to very long delays before the transaction can be verified.
+
+As a result, Corda may be best suited for use in assets that are not expected to be transacted many times in their life, like a contract or debt offering. 
 
 ### Consensus protocol
 
+Another attribute that makes Corda unique is its approach to consensus. Corda uses two different types of consensus to verify transactions to the ledger; validity and uniqueness consensus. 
+
+Validity consensus is centered around the idea of making sure that a given transaction is sound and that both parties have properly signed the transaction. As previously mentioned, for a transaction to be valid, each proceeding transaction must also be verified. Thus, the full history of the transaction must be verified in order to add this transaction to the chain. If all prior transactions are properly signed and the current addition to the transaction is also properly signed, it is a candidate for validation and addition to the ledger.
+
+Secondly, uniqueness consensus helps prevent against the common "double spend" issue of trying to get transactions verified at the same time in order to cheat the system. Uniqueness consensus helps prevent this by checking to make sure that the inputs for a transaction have not already been used in another transaction This process is aided by what are called *notaries*, which is a network cluster that verifies the uniqueness property of the transaction. Until the notary verifies the transaction and adds its signature, the transaction will not be seen as valid. In regards to algorithms, the notary can be a single node, a group of nodes, and can implement whichever consensus algorithm it chooses. 
+
+If both the validity and uniqueness checks hold, the transaction can be verified and added to the ledger.
+
 ### Privacy
+
+The development team at R3 believes that mechanisms within Corda make it private for most use cases, however, one can argue that there are still gaps similarly suffered by other blockchain implementations. In terms of privacy, one advantage of Corda is that nodes do not see all transactions, which makes transactions more private than other blockchains. However, the big concern is that since nodes must verify preceding transactions, privacy can be a concern later in the lifecycle of an asset. As an example, if person A and person B make a transaction, and then person B later transacts with person C, the node will have all of this information. However there is no way for person A to know who may see the transaction later on. The Corda team has researched possible solutions to this problem, for example using multiple public keys (white paper).
+
+Similarly, Corda is not trustless and a party's identity must be known prior to joining a network (corda.net). As a result, it is really not possible to transact anonymously on Corda, although in the future it may be possible.
 
 ### Degree of decentralization
 
+In a Corda network, each node runs the Corda software and other applications called CorDapps. Corda's design is such that the network is decentralized, governed by smart contracts in such a way that transactions are not valid until signed and verify by the parties involved (Greenspan). However, even the R3 team admits that Corda is not quite as decentralized as other systems like Bitcoin or Ethereum due to its non-trustless nature and the fact that transactions are not verified by the entire network (corda.net). However, it is pointed out that this is a design choice favoring speed and scalability. Thus, users of Corda should be aware of it's limitations and potential flaws but understand the gains in performance. Regardless, Corda should provide enough transparency, privacy, and protection for most use cases.
+
 ### Settlement finality
+
+Like most distributed ledger technologies, most transactions are final and cannot be reversed. The same is true of Corda where once a transaction is deemed valid, it cannot be reversed. Plus, the consensus protocols in place help avoid invalid transactions such as "double spending" which would cause the need for a transaction to be reversed. Due to these mechanisms, it is unlikely that an invalid transaction would be signed and later verified as a valid transaction.
 
 # Conclusion
 
 ...@
 
 # References
+The Corda Platform: An Introduction. Corda.net, 2018, The Corda Platform: An Introduction.
+
+Greenspan, Gideon. R3 Corda: Deep Dive and Technical Review. Multichain.com, R3 Corda: Deep Dive and Technical Review.
+
+“Open Source Blockchain Platform for Business.” Corda, www.corda.net/.
 
 Hyperledger Architecture Working Group (WG). 2017. Hyperledger Architecture, Volume 1. https://www.hyperledger.org/wp-content/uploads/2017/08/Hyperledger_Arch_WG_Paper_1_Consensus.pdf
 
